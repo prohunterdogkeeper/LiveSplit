@@ -4,8 +4,7 @@ os: Visual Studio 2015
 configuration: Release
 
 environment:
-  BUILD_PASSWORD:
-    secure: imgAD76elcfLPYX6Wf4y5g==
+
 
 before_build:
 - git config user.email "you@example.com"
@@ -18,14 +17,6 @@ before_build:
 
 build_script:
 - msbuild LiveSplit\LiveSplit.sln /verbosity:minimal /p:NoWarn=1591 /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
-
-notifications:
-- provider: Email
-  to:
-  - spapushin@gmail.com
-  on_build_success: false
-  on_build_failure: true
-  on_build_status_changed: false
 
 test:
   assemblies: LiveSplit\LiveSplit.Tests\bin\Release\LiveSplit.Tests.dll
@@ -64,7 +55,7 @@ after_build:
         .\WinSCP.com /command `
             "option batch abort" `
             "option confirm off" `
-            "open ftp://livesplit:${env:BUILD_PASSWORD}@livesplit.org -hostkey=*" `
+            "open ftp://bruger:kodekode@vocaboo.hostedftp.com -hostkey=*" `
             "put $BUILD_NAME /" `
             "exit"
     }
